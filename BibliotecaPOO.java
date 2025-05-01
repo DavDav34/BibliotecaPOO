@@ -87,3 +87,80 @@ abstract class RecursoBibliografico {
     public String getIdentificador() { return identificador; }
     public String getTitulo() { return titulo; }
 }
+
+class Libro extends RecursoBibliografico {
+    private String autor;
+    private String isbn;
+    private boolean prestado;
+
+    public Libro(String titulo, String isbn, String autor) {
+        super(titulo, isbn);
+        this.isbn = isbn;
+        this.autor = autor;
+        this.prestado = false;
+    }
+
+    @Override
+    public boolean prestar() {
+        if (!prestado) {
+            prestado = true;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean devolver() {
+        if (prestado) {
+            prestado = false;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean estaDisponible() { return !prestado; }
+
+    @Override
+    public String getDetalles() {
+        return String.format("[LIBRO] %s - %s | ISBN: %s | Estado: %s",
+                titulo, autor, isbn, prestado ? "Prestado" : "Disponible");
+    }
+}
+
+class Revista extends RecursoBibliografico {
+    private String issn;
+    private int añoPublicacion;
+    private int ejemplares;
+
+    public Revista(String titulo, String issn, int año, int ejemplares) {
+        super(titulo, issn);
+        this.issn = issn;
+        this.añoPublicacion = año;
+        this.ejemplares = ejemplares;
+    }
+
+    @Override
+    public boolean prestar() {
+        if (ejemplares > 0) {
+            ejemplares--;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean devolver() {
+        ejemplares++;
+        return true;
+    }
+
+    @Override
+    public boolean estaDisponible() { return ejemplares > 0; }
+
+    @Override
+    public String getDetalles() {
+        return String.format("[REVISTA] %s | Año: %d | Ejemplares: %d | ISSN: %s",
+                titulo, añoPublicacion, ejemplares, issn);
+    }
+}
