@@ -18,7 +18,7 @@ public class BibliotecaPOO {
             System.out.println("3. Registrar una devolucion");
             System.out.println("4. Mostrar prestamos activos");
             System.out.println("5. Salir");
-            System.out.print("Seleccione opcion: ");
+            System.out.print("Seleccione una opcion: ");
             opcion = scanner.nextInt();
             
             switch(opcion) {
