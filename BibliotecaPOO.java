@@ -88,6 +88,8 @@ abstract class RecursoBibliografico {
     public String getTitulo() { return titulo; }
 }
 
+//clases extendidas
+
 class Libro extends RecursoBibliografico {
     private String autor;
     private String isbn;
