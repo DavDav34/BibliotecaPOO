@@ -69,3 +69,21 @@ public class BibliotecaPOO {
         biblioteca.realizarDevolucion(userId, recursoId);
     }
 }
+
+abstract class RecursoBibliografico {
+    protected String titulo;
+    protected String identificador;
+
+    public RecursoBibliografico(String titulo, String identificador) {
+        this.titulo = titulo;
+        this.identificador = identificador;
+    }
+
+    public abstract boolean prestar();
+    public abstract boolean devolver();
+    public abstract boolean estaDisponible();
+    public abstract String getDetalles();
+
+    public String getIdentificador() { return identificador; }
+    public String getTitulo() { return titulo; }
+}
